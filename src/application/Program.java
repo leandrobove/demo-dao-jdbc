@@ -1,8 +1,11 @@
 package application;
 
+import java.util.List;
+
 import connection.DB;
 import dao.DaoFactory;
 import dao.SellerDao;
+import entities.Department;
 import entities.Seller;
 
 public class Program {
@@ -16,6 +19,14 @@ public class Program {
 		Seller sel = sellerDao.findById(3);
 
 		System.out.println(sel);
+		
+		System.out.println("=== Test 2 : findByDepartment seller ==");
+		Department dep = new Department(2, null);
+		List<Seller> listaSeller = sellerDao.findByDepartment(dep);
+		
+		for (Seller s : listaSeller) {
+			System.out.println(s);
+		}
 		
 		DB.closeConnection();
 

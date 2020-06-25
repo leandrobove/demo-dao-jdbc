@@ -28,6 +28,13 @@ public class Program {
 			System.out.println(s);
 		}
 		
+		System.out.println("=== Test 3 : findAll seller ==");
+		listaSeller = sellerDao.findAll();
+		
+		for (Seller s : listaSeller) {
+			System.out.println(s);
+		}
+		
 		DB.closeConnection();
 
 	}

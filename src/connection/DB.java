@@ -19,7 +19,7 @@ public class DB {
 	private static Connection connection = null;
 
 	private static Properties getProperties() {
-		File file_path = new File("src/" + configs_file_properties);
+		File file_path = new File("src"+ File.separator + configs_file_properties);
 
 		try (FileInputStream is = new FileInputStream(file_path)) {
 

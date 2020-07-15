@@ -36,9 +36,17 @@ public class Program {
 		}
 
 		System.out.println("=== Test 4 : insert seller ==");
-		Seller novoSeller = new Seller(null, "Greg", "greg@gmail.com", new java.util.Date(), 4000.0, dep);
-		sellerDao.insert(novoSeller);
-		System.out.println("Inserted! New id = " + novoSeller.getId());
+		/*
+		 * Seller novoSeller = new Seller(null, "Greg", "greg@gmail.com", new
+		 * java.util.Date(), 4000.0, dep); sellerDao.insert(novoSeller);
+		 * System.out.println("Inserted! New id = " + novoSeller.getId());
+		 */
+
+		System.out.println("=== Test 5 : update seller ==");
+		sel = sellerDao.findById(1);
+		sel.setName("Marta Wayne");
+
+		sellerDao.update(sel);
 
 		DB.closeConnection();
 

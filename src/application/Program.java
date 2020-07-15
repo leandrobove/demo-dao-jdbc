@@ -53,11 +53,11 @@ public class Program {
 		 */
 
 		System.out.println("=== Test 6 : deleteById seller ==");
-		System.out.print("Informe um vendedor ID para ser deletado: ");
+		/*System.out.print("Informe um vendedor ID para ser deletado: ");
 		int id = sc.nextInt();
 
 		sellerDao.deleteById(id);
-		System.out.println("Deletado com sucesso.");
+		System.out.println("Deletado com sucesso.");*/
 
 		DB.closeConnection();
 		sc.close();

@@ -15,7 +15,6 @@ import exception.DBException;
 public class DepartmentDaoImpl implements DepartmentDao {
 
 	private Connection conn;
-	private ResultSet rs;
 
 	public DepartmentDaoImpl(Connection conn) {
 		this.conn = conn;
@@ -55,13 +54,42 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public void update(Department dep) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement st = null;
+
+		try {
+			st = conn.prepareStatement("UPDATE department SET Name = ? " + "WHERE Id = ?");
+
+			st.setString(1, dep.getName());
+			st.setInt(2, dep.getId());
+
+			st.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement st = null;
+
+		try {
+			st = conn.prepareStatement("DELETE from department WHERE Id = ?");
+
+			st.setInt(1, id);
+
+			st.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 
 	}
 

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.List;
+
 import connection.DB;
 import dao.DaoFactory;
 import dao.DepartmentDao;
@@ -27,8 +29,16 @@ public class Program2 {
 		System.out.println("Deleted!");
 
 		System.out.println("=== Test 4 : findById department ==");
-		Department objDepartment = depDao.findById(2);
-		System.out.println(objDepartment);
+		/*
+		 * Department objDepartment = depDao.findById(2);
+		 * System.out.println(objDepartment);
+		 */
+
+		System.out.println("=== Test 5 : findAll department ==");
+		List<Department> listaDep = depDao.findAll();
+		for (Department d : listaDep) {
+			System.out.println(d);
+		}
 
 		DB.closeConnection();
 	}

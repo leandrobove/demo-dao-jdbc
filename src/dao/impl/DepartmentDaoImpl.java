@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import connection.DB;
 import dao.DepartmentDao;
 import entities.Department;
+import entities.Seller;
 import exception.DBException;
 
 public class DepartmentDaoImpl implements DepartmentDao {
@@ -125,8 +129,29 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public List<Department> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			stmt = conn.prepareStatement("SELECT Id, Name FROM department ORDER BY Id ASC");
+
+			rs = stmt.executeQuery();
+
+			List<Department> listaDep = new ArrayList<>();
+
+			while (rs.next()) {
+				listaDep.add(new Department(rs.getInt("Id"), rs.getString("Name")));
+			}
+
+			return listaDep;
+
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(stmt);
+		}
 	}
 
 }
